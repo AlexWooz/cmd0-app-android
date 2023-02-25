@@ -14,14 +14,15 @@ import java.util.Properties
 
 class DBOps {
 
-    val prop = Properties()
-    val input = FileInputStream("config.properties")
-    //get mongoUser property from config.properties and store it in a variable
-    val mongoUser = prop.getProperty("mongoUser")
-    //get mongoPassword property from config.properties and store it in a variable
-    val mongoPassword = prop.getProperty("mongoPassword")
-
     fun getDB():MongoDatabase {
+        val prop = Properties()
+        val input = FileInputStream("config.properties")
+        prop.load(input)
+        //get mongoUser property from config.properties and store it in a variable
+        val mongoUser = prop.getProperty("mongoUser")
+        //get mongoPassword property from config.properties and store it in a variable
+        val mongoPassword = prop.getProperty("mongoPassword")
+
         val connectionString =
                 ConnectionString(String.format("mongodb+srv://%s:%s@cluster0.yy0jlun.mongodb.net/?retryWrites=true&w=majority", mongoUser, mongoPassword))
         val settings = MongoClientSettings.builder()
