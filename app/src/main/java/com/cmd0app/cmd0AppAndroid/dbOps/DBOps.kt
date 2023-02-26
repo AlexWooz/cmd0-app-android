@@ -43,13 +43,18 @@ class DBOps {
         return database.getCollection(collection_name)
     }
 
-    fun findDocument(query:String):Document {
-        val collection = getCollection("movies")
+    fun insertDocument(document:Document, collection_name: String) {
+        val collection = getCollection(collection_name)
+        collection.insertOne(document)
+    }
+
+    fun findDocument(query:String, collection_name: String):Document {
+        val collection = getCollection(collection_name)
         return collection.find(Document.parse(query)).first()
 
     }
 
-    fun findManyDocuments(query:String):List<Document> {
+    fun findManyDocuments(query:String, collection_name: String):List<Document> {
         val collection = getCollection("movies")
         return collection.find(Document.parse(query)).toList()
     }
