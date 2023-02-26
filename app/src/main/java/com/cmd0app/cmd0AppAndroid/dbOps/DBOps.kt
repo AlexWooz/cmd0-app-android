@@ -55,7 +55,7 @@ class DBOps {
     }
 
     fun findManyDocuments(query:String, collection_name: String):List<Document> {
-        val collection = getCollection("movies")
+        val collection = getCollection(collection_name)
         return collection.find(Document.parse(query)).toList()
     }
 }
