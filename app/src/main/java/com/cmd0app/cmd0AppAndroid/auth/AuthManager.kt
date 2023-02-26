@@ -51,5 +51,6 @@ class AuthManager {
     fun logout() {
         this.email = ""
         this.name = ""
+        this.login = false
     }
 }
